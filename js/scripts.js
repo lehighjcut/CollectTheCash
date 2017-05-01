@@ -1,10 +1,6 @@
 var viewportWidth;
 var viewportWidth;
-var images = ["100.jpeg, 1.jpeg, 5.jpeg, 20.jpeg, 50.jpeg"];
-//, "tennis.png","pokemoney.png", "basketmoney.png", "bowling.png"];
 var scoresList;
-var clickedFlag = false;
-var mouseLeftButtonOffset = 0;
 var gameTime = 30;
 var Keys = {
 	left: false,
@@ -14,12 +10,11 @@ var Keys = {
 // Returns width of the viewable portion of the window.
 function getWindowWidth() {
 	return (window.innerWidth > 0) ? $(window).width() : screen.width;
-	//return $(window).width();
 }
 
 // Returns height of the viewable portion of the window.
 function getWindowHeight() {
-	return $(window).height();
+	return (window.innerHeight > 0) ? $(window).height() : screen.height;
 }
 
 $(function() {
@@ -76,10 +71,6 @@ function attachEventHandlers() {
 	// Move trash can to the left or right based on whether their mouse is
 	// to the left or right of the trash can.
 	$(document).bind("mousedown touchstart", function(event) {
-		// Don't move the trash can if they clicked the start button
-		if ($(event.target).attr("id") != "begin") {
-			clickedFlag = true;
-		}
 		var tappedX;
 		if (event.type == 'touchstart') tappedX = event.originalEvent.touches[0].pageX;
 		else tappedX = event.clientX;
@@ -92,17 +83,9 @@ function attachEventHandlers() {
 	});
 
 	// If they let go of the mouse, stop moving trash can.
-	$(document).mouseup(function(event) {
+	$(document).on("mouseup touchend", function(event) {
 		Keys.left = false;
 		Keys.right = false;
-		//clickedFlag = false;
-	});
-
-	$(document).on("touchend", function (event) {
-		Keys.left = false;
-		Keys.right = false;
-		//clickedFlag = false;
-
 	});
 
 	// Begin page two event handlers
@@ -145,9 +128,9 @@ function detectMovement() {
 function leftArrowPressed() {
 	var trashCan = document.getElementById("trash");
 	var leftPosition = parseInt($("#trash").css("left"));
-	var amountToMove = Math.floor(viewportWidth/200);
-	if ((leftPosition - amountToMove) > 0) {
-		trashCan.style.left = (leftPosition - amountToMove) + 'px';
+	var moveLength = amountToMove();
+	if ((leftPosition - moveLength) > 0) {
+		trashCan.style.left = (leftPosition - moveLength) + 'px';
 	}
 }
 
@@ -156,31 +139,14 @@ function rightArrowPressed() {
 	var trashCan = document.getElementById("trash");
 	var trashCanWidth = $("#trash").outerWidth();
 	var leftPosition = parseInt($("#trash").css("left"));
-	var amountToMove = Math.floor(viewportWidth/200);
-	if ((leftPosition + amountToMove + trashCanWidth) < viewportWidth) {
-		trashCan.style.left = (leftPosition + amountToMove) + 'px';
+	var moveLength = amountToMove();
+	if ((leftPosition + moveLength + trashCanWidth) < viewportWidth) {
+		trashCan.style.left = (leftPosition + moveLength) + 'px';
 	}
 }
 
-// For if the user clicks to the right of the trash can.
-function moveTrashCanRight() {
-	var leftPosition = parseInt($("#trash").css("left"));
-	var trashCanWidth = $("#trash").outerWidth();
-	var amountToMove = Math.floor(viewportWidth/200);
-	if (clickedFlag && ((leftPosition + amountToMove + trashCanWidth) < (viewportWidth))) {
-		$("#trash").css("left", (leftPosition + amountToMove) + 'px');
-		setTimeout("moveTrashCanRight()", 5);
-	}
-}
-
-// For if the user clicks to the left of the trash can.
-function moveTrashCanLeft() {
-	var rightPosition = parseInt($("#trash").css("left"));
-	var amountToMove = Math.floor(viewportWidth/200);
-	if (clickedFlag && ((rightPosition - amountToMove) > 0)) {
-		$("#trash").css("left", (rightPosition - amountToMove) + 'px');
-		setTimeout("moveTrashCanLeft()", 5);
-	}
+function amountToMove() {
+	return Math.floor(viewportWidth/200);
 }
 
 class MoneyGroup {
@@ -285,7 +251,7 @@ class Money {
 // Update the position of the images every millisecond
 function timer() {
 	moneyGroup.moveAll();
-	setTimeout("timer()", 3);
+	setTimeout("timer()", 2);
 }
 
 
@@ -318,8 +284,7 @@ var sum = 0;
 // Spawns dollars for how many seconds were passed in until sum is greater than seconds.
 function startMoney(seconds) {
 	// Next dollar bill will spawn in some time between .5 and 1 seconds
-	var milliseconds = (Math.floor(Math.random() * (1000 - 500))) + 500;
-	if (edgeRandomizer % 4 == 0) milliseconds = 450;
+	var milliseconds = (Math.floor(Math.random() * (1000 - 400))) + 500;
 	setTimeout(function() {
 		if (sum < (seconds * 1000)) {
 			sum += milliseconds;
