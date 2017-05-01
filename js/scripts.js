@@ -39,19 +39,19 @@ function attachEventHandlers() {
 		viewportHeight = getWindowHeight();
 	});
 
-	$(".bill").on('click touchstart tap taphold mousedown', function(event) {
+	/*$(".bill").on('click touchstart tap taphold mousedown', function(event) {
 		event.preventDefault();
-	});
+	});*/
 
-	window.oncontextmenu = function(event) {
+	/*window.oncontextmenu = function(event) {
 		event.preventDefault();
 		event.stopPropagation();
 		return false;
-	};
+	};*/
 
 	$(document).mousedown(function(e) {
 		if (e.button == 2) {
-			alert('Right mouse button!');
+			//alert('Right mouse button!');
 			return false;
 		}
 		return true;
