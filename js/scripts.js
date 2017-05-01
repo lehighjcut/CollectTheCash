@@ -39,7 +39,7 @@ function attachEventHandlers() {
 		viewportHeight = getWindowHeight();
 	});
 
-	$(".bill").on('click', function(event) {
+	$(".bill").on('click touchstart tap taphold mousedown', function(event) {
 		event.preventDefault();
 	});
 
