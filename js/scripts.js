@@ -39,24 +39,6 @@ function attachEventHandlers() {
 		viewportHeight = getWindowHeight();
 	});
 
-	/*$(".bill").on('click touchstart tap taphold mousedown', function(event) {
-		event.preventDefault();
-	});*/
-
-	/*window.oncontextmenu = function(event) {
-		event.preventDefault();
-		event.stopPropagation();
-		return false;
-	};*/
-
-	$(document).mousedown(function(e) {
-		if (e.button == 2) {
-			//alert('Right mouse button!');
-			return false;
-		}
-		return true;
-	});
-
 	// If user hit start button, start the countdown.
 	$("#begin").click(function() {
 		$("#begin").hide();
@@ -237,7 +219,7 @@ class Money {
 			"max-width": "90px"
 		});
 		// Add the image to the body
-		$(".img-container").append(imageElement);
+		$("body").append(imageElement);
 
 		// Save dollar amount of how much this image is worth
 		this.dollars = parseInt(moneyType);
@@ -255,7 +237,6 @@ class Money {
 		if (this.y + $(this.image).outerHeight() >= viewportHeight) $(this.image).remove(); //this.dirY = -this.dirY;
 		if (this.x <= 0) this.dirX = -this.dirX;
 		if (this.y <= 0) this.dirY = -this.dirY;
-		//alert(this.dirX + ", " + this.dirY);
 		// Update the coordinates.
 		this.x += this.dirX;
 		this.y += this.dirY;
