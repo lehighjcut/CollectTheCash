@@ -43,11 +43,19 @@ function attachEventHandlers() {
 		event.preventDefault();
 	});
 
-	/*window.oncontextmenu = function(event) {
-    	event.preventDefault();
-     	event.stopPropagation();
-     	return false;
-	};*/
+	window.oncontextmenu = function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		return false;
+	};
+
+	$(document).mousedown(function(e) {
+		if (e.button == 2) {
+			alert('Right mouse button!');
+			return false;
+		}
+		return true;
+	});
 
 	// If user hit start button, start the countdown.
 	$("#begin").click(function() {
@@ -122,7 +130,7 @@ setInterval(function() {
 
 // Check for if they are resizing the window such that the trash can 
 // is outside of the window. if they are, change the position of the trash can.
-setInterval(function () {
+setInterval(function() {
 	if (parseInt($("#trash").css("left")) > viewportWidth) {
 		$("#trash").css("left", (viewportWidth - $("#trash").outerWidth()) + 'px');
 	}
@@ -156,7 +164,7 @@ function rightArrowPressed() {
 }
 
 function amountToMove() {
-	return Math.floor(viewportWidth/200);
+	return Math.floor(viewportWidth / 200);
 }
 
 class MoneyGroup {
