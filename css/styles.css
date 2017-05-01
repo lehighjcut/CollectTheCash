@@ -1,0 +1,22 @@
+#trash {
+	position: absolute;
+	max-height: 45px;
+	max-width: 45px;
+}
+
+.fix {
+    bottom:0px;
+    left:50%;
+}
+
+#count_num, #mostRecentScore {
+	text-align: center;
+}
+
+th {
+	padding-right: 30px;
+}
+
+#scoreTable td {
+	text-align: center;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Collect The Cash</title>
+	<meta charset="UTF-8">
+	<meta name ="viewport" content ="width=device-width, initial-scale=1">
+	<link rel ="stylesheet" href ="js/jquery/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" type="text/css" href="js/jquery/jqueryui/jquery-ui.min.css"/>
+	<link rel="stylesheet" type="text/css" href="js/jquery/jqueryui/jquery-ui.theme.min.css"/>
+	<link rel="stylesheet" type="text/css" href="js/jquery/jqueryui/jquery-ui.structure.min.css"/>
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">-->
+	<script src="js/jquery/jquery-1.8.1.min.js"></script>
+	<script src="js/jquery/jquery.mobile-1.4.5.min.js"></script>
+	<script src="js/jquery/jqueryui/jquery-ui.min.js"></script>
+	<script src="js/scripts.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
+</head>
+<body>
+	<!-- page one -->
+	<div data-role="page" id="one">
+		<div data-role="header">
+			<h1>Collect The Cash!</h1>
+		</div>
+		<div data-role="content">
+			<!--<button id="clickBtn" class="ui-btn ui-btn-inline">Get page viewport info</button>-->
+			<button id="begin" class="ui-btn ui-btn-inline">Start</button>
+			<table id="scoreTable">
+				<thead>
+					<tr>
+						<th> Score </th>
+						<th> Time Left </th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td id="score">0</td>
+						<td id="timeLeft">30</td>
+					</tr>
+				</tbody>
+			</table>
+			<h1 id="count_num"></h1>
+			<img id="trash" src="trashIcon.png" class="moveable fix">
+		</div>
+	</div>
+	<!-- /page one -->
+	<!-- page two -->
+	<div data-role="page" id="two" data-theme="a">
+		<div data-role="header">
+			<h1>Scores</h1>
+		</div><!-- /header -->
+		<div role="main" class="ui-content">
+			<h1 id="mostRecentScore"></h1>
+			<table id="scoreboard">
+				<thead>
+					<tr>
+						<th> <h1>Top 5 Scores</h1> </th>
+					</tr>
+				</thead>
+				<tbody id="scoreboardbody">
+				</tbody>
+			</table>
+			<p><a id="pageOneBtn" href="#one" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b">Click here to try again!</a></p>
+		</div><!-- /content -->
+	</div><!-- /page two -->
+</body>
+</html>
