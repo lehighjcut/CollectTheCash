@@ -43,11 +43,11 @@ function attachEventHandlers() {
 		event.preventDefault();
 	});
 
-	window.oncontextmenu = function(event) {
+	/*window.oncontextmenu = function(event) {
     	event.preventDefault();
      	event.stopPropagation();
      	return false;
-	};
+	};*/
 
 	// If user hit start button, start the countdown.
 	$("#begin").click(function() {
@@ -229,7 +229,7 @@ class Money {
 			"max-width": "90px"
 		});
 		// Add the image to the body
-		$("body").append(imageElement);
+		$(".img-container").append(imageElement);
 
 		// Save dollar amount of how much this image is worth
 		this.dollars = parseInt(moneyType);
