@@ -74,7 +74,7 @@ function attachEventHandlers() {
 
 	// Move trash can to the left or right based on whether their mouse is
 	// to the left or right of the trash can.
-	$(document).on("taphold", function(event) {
+	$(document).on("touchstart", function(event) {
 		// Don't move the trash can if they clicked the start button
 		if ($(event.target).attr("id") != "begin") {
 			clickedFlag = true;
