@@ -43,6 +43,12 @@ function attachEventHandlers() {
 		event.preventDefault();
 	});
 
+	window.oncontextmenu = function(event) {
+    	event.preventDefault();
+     	event.stopPropagation();
+     	return false;
+	};
+
 	// If user hit start button, start the countdown.
 	$("#begin").click(function() {
 		$("#begin").hide();
