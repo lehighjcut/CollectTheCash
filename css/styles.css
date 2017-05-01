@@ -23,6 +23,12 @@ th {
 
 .bill {
     max-width: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
 .shield {
@@ -32,4 +38,8 @@ th {
     bottom: 0;
     left: 0;
     z-index: 1;
+}
+
+#begin {
+	z-index: 2;
 }
