@@ -81,11 +81,11 @@ function attachEventHandlers() {
 		}
 		//moveTrashCanRight();
 		if (event.clientX > $("#trash").offset().left) {
-			//Keys.right = true;
-			moveTrashCanRight();
+			Keys.right = true;
+			//moveTrashCanRight();
 		} else {
-			//Keys.left = true;
-			moveTrashCanLeft();
+			Keys.left = true;
+			//moveTrashCanLeft();
 		}
 	});
 
@@ -97,6 +97,8 @@ function attachEventHandlers() {
 	});
 
 	$(document).on("touchend", function (event) {
+		Keys.left = false;
+		Keys.right = false;
 		clickedFlag = false;
 	});
 
