@@ -80,7 +80,7 @@ function attachEventHandlers() {
 			clickedFlag = true;
 		}
 		//moveTrashCanRight();
-		if (event.clientX > $("#trash").offset().left) {
+		if (event.clientX > (viewportWidth / 2)) {
 			Keys.right = true;
 			//moveTrashCanRight();
 		} else {
