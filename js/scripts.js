@@ -39,6 +39,10 @@ function attachEventHandlers() {
 		viewportHeight = getWindowHeight();
 	});
 
+	$(".bill").on('click', function(event) {
+		event.preventDefault();
+	});
+
 	// If user hit start button, start the countdown.
 	$("#begin").click(function() {
 		$("#begin").hide();
@@ -211,7 +215,7 @@ class Money {
 
 	launch() {
 		var moneyType = getRandomMoneyType();
-		var imageElement = $("<img src='" + moneyType + "'>");
+		var imageElement = $("<img class='bill' src='" + moneyType + "'>");
 		$(imageElement).attr("id", "b" + this.n);
 		$(imageElement).css({
 			"position": "absolute",
