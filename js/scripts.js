@@ -80,14 +80,18 @@ function attachEventHandlers() {
 			clickedFlag = true;
 		}
 		if (event.clientX > $("#trash").offset().left) {
-			moveTrashCanRight();
+			Keys.right = true;
+			//moveTrashCanRight();
 		} else {
-			moveTrashCanLeft();
+			Keys.left = true;
+			//moveTrashCanLeft();
 		}
 	});
 
 	// If they let go of the mouse, stop moving trash can.
 	$(document).mouseup(function(event) {
+		Keys.left = false;
+		Keys.right = false;
 		clickedFlag = false;
 	});
 
