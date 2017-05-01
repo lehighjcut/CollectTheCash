@@ -96,6 +96,10 @@ function attachEventHandlers() {
 		clickedFlag = false;
 	});
 
+	$(document).on("touchend", function (event) {
+		clickedFlag = false;
+	});
+
 	// Begin page two event handlers
 	$("#pageOneBtn").click(function() {
 		score = 0;
