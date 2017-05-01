@@ -74,19 +74,20 @@ function attachEventHandlers() {
 
 	// Move trash can to the left or right based on whether their mouse is
 	// to the left or right of the trash can.
-	$(document).on("touchstart", function(event) {
+	$(document).on("mousedown touchstart", function(event) {
 		// Don't move the trash can if they clicked the start button
 		if ($(event.target).attr("id") != "begin") {
 			clickedFlag = true;
 		}
+		//alert('hey');
 		//moveTrashCanRight();
-		alert(event.clientX);
+		//alert(event.clientX);
 		if (event.clientX > (viewportWidth / 2)) {
-			Keys.right = true;
-			//moveTrashCanRight();
+			//Keys.right = true;
+			moveTrashCanRight();
 		} else {
-			Keys.left = true;
-			//moveTrashCanLeft();
+			//Keys.left = true;
+			moveTrashCanLeft();
 		}
 	});
 
