@@ -13,7 +13,8 @@ var Keys = {
 
 // Returns width of the viewable portion of the window.
 function getWindowWidth() {
-	return $(window).width();
+	return (window.innerWidth > 0) ? $(window).width() : screen.width;
+	//return $(window).width();
 }
 
 // Returns height of the viewable portion of the window.
@@ -79,26 +80,28 @@ function attachEventHandlers() {
 		if ($(event.target).attr("id") != "begin") {
 			clickedFlag = true;
 		}
-		if (event.clientX > (viewportWidth / 2)) {
-			//Keys.right = true;
-			moveTrashCanRight();
+		var tappedX;
+		if (event.type == 'touchstart') tappedX = event.originalEvent.touches[0].pageX;
+		else tappedX = event.clientX;
+
+		if (tappedX > (viewportWidth / 2)) {
+			Keys.right = true;
 		} else {
-			//Keys.left = true;
-			moveTrashCanLeft();
+			Keys.left = true;
 		}
 	});
 
 	// If they let go of the mouse, stop moving trash can.
 	$(document).mouseup(function(event) {
-		//Keys.left = false;
-		//Keys.right = false;
-		clickedFlag = false;
+		Keys.left = false;
+		Keys.right = false;
+		//clickedFlag = false;
 	});
 
 	$(document).on("touchend", function (event) {
 		Keys.left = false;
 		Keys.right = false;
-		clickedFlag = false;
+		//clickedFlag = false;
 
 	});
 
