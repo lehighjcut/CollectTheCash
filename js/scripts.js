@@ -1,5 +1,4 @@
 var viewportWidth;
-var viewportWidth;
 var scoresList;
 var gameTime = 30;
 var Keys = {
@@ -21,8 +20,8 @@ $(function() {
 	attachEventHandlers();
 	scoresList = localStorage.getItem("scores");
 	scoresList = JSON.parse(scoresList);
-	if (scoresList == null || scoresList.length == 0) {
-		scoresList = new Array();
+	if (scoresList === null || scoresList.length === 0) {
+		scoresList = [];
 	}
 	$("#timeLeft").text(gameTime);
 	populateScoreboard();
@@ -116,7 +115,7 @@ setInterval(function() {
 	if (parseInt($("#trash").css("left")) > viewportWidth) {
 		$("#trash").css("left", (viewportWidth - $("#trash").outerWidth()) + 'px');
 	}
-}, 100);
+}, 500);
 
 // Call appropriate methods based on whether left arrow key or right arrow key was pressed
 function detectMovement() {
@@ -152,7 +151,7 @@ function amountToMove() {
 class MoneyGroup {
 	constructor() {
 		this.numMoneys = 0;
-		this.list = new Object();
+		this.list = {};
 	}
 
 	// Move each money in the list one unit in it's current direction
@@ -250,7 +249,7 @@ class Money {
 // Update the position of the images every millisecond
 function timer() {
 	moneyGroup.moveAll();
-	setTimeout("timer()", 2);
+	setTimeout("timer()", 3);
 }
 
 
@@ -263,16 +262,16 @@ function addMoney() {
 	var startXCoordinate = getRandomXCoordinateWithinViewport();
 	var startYCoordinate = getRandomYCoordinateWithinViewport();
 	var random = 1 == (Math.round(Math.random()));
-	var xDir = random == true ? 2 : -2;
+	var xDir = random === true ? 2 : -2;
 	// 2 by default
 	var yDir = 2;
-	if (randomizer1++ % 4 == 0) {
+	if (randomizer1++ % 4 === 0) {
 		xDir = 0;
 		yDir = 4;
 	}
-	if (randomizer2++ % 5 == 0) xDir = random == true ? 3 : -3;
-	if (randomizer3++ % 6 == 0) xDir = random == true ? 4 : -4;
-	if (edgeRandomizer++ % 4 == 0) startXCoordinate = 2;
+	if (randomizer2++ % 5 === 0) xDir = random === true ? 3 : -3;
+	if (randomizer3++ % 6 === 0) xDir = random === true ? 4 : -4;
+	if (edgeRandomizer++ % 4 === 0) startXCoordinate = 2;
 	var money = new Money(startXCoordinate, 1, xDir, yDir);
 	money.launch();
 }
@@ -365,7 +364,7 @@ function getRandomXCoordinateWithinViewport() {
 
 // Returns a random Y coordinate within the viewport height.
 function getRandomYCoordinateWithinViewport() {
-	return Math.floor(Math.random() * (viewportHeight - 30));;
+	return Math.floor(Math.random() * (viewportHeight - 30));
 }
 
 function getScore() {
@@ -405,12 +404,12 @@ function populateScoreboard() {
 	$("#scoreboard tr td").remove();
 	// sorts in reverse
 	scoresList.sort(function(a, b) {
-		return b - a
+		return b - a;
 	});
 	// Keep only first 5.
 	scoresList = scoresList.slice(0, 5);
 	var i = 0;
-	for (; i < scoresList.length && (scoresList[i] != null && scoresList[i] != undefined); i++) {
+	for (; i < scoresList.length && (scoresList[i] !== null && scoresList[i] !== undefined); i++) {
 		var row = $("<tr></tr>");
 		var cell1 = $("<td><h3>" + (i + 1) + "</h3></td>");
 		$(row).append(cell1);
